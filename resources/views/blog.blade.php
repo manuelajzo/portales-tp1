@@ -14,7 +14,7 @@
                     <img src="{{ asset($post->image) }}" class="card-img-top" alt="{{ $post->title }}" style="height: 200px; object-fit: cover;">
                     <div class="card-body">
                         <h5 class="card-title">{{ $post->title }}</h5>
-                        <p class="card-text">{{ $post->excerpt }}</p>
+                        <p class="card-text">{{ $post->short_description }}</p>
                         <a href="{{ route('blog.show', $post->slug) }}" class="btn btn-primary">Leer más</a>
                     </div>
                 </div>

@@ -15,7 +15,7 @@ class BlogPost extends Model
         'content',
         'image',
         'category',
-        'excerpt',
+        'short_description',
         'is_published',
         'published_at'
     ];
