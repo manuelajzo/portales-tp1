@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title ?? 'Magia Potagia' }}</title>
-    
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
-    
+
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Nuestro CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.svg') }}">
 </head>
 <body>
     <!-- Navbar -->
@@ -98,9 +98,9 @@
                                 <i class="bi bi-moon-stars"></i> Magia Potagia
                             </h5>
                             <p class="footer-description">
-                                Descubre el poder de la espiritualidad a través del tarot, 
-                                los cristales y la astrología. Tu viaje hacia el autoconocimiento 
-                                comienza aquí.
+                                Descubrí el poder de la espiritualidad a través del tarot,
+                                los cristales y la astrología. Tu viaje hacia el autoconocimiento
+                                comienza acá.
                             </p>
                         </div>
                     </div>

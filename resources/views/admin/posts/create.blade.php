@@ -1,10 +1,7 @@
 <x-layout>
     <x-slot:title>Crear Nuevo Post</x-slot:title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <div class="container py-5">
+     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -23,4 +20,4 @@
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</x-layout> 
+</x-layout>

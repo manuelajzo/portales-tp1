@@ -3,8 +3,8 @@
 
     <!-- Hero Section -->
     <div class="hero-section text-center py-5 mb-5">
-        <h1 class="display-4 mb-3">✨ Bienvenida a Magia Potagia ✨</h1>
-        <p class="lead mb-4">Descubre el poder de la espiritualidad y encuentra tu camino hacia el equilibrio interior</p>
+        <h1 class="display-4 mb-3">✨ Bienvenidx a Magia Potagia ✨</h1>
+        <p class="lead mb-4">Descubrí el poder de la espiritualidad y encontrá tu camino hacia el equilibrio interior</p>
         <div class="hero-buttons">
             <a href="{{ url('/products') }}" class="btn btn-primary btn-lg me-2">
                 <i class="bi bi-gem"></i> Ver Productos

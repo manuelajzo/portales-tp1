@@ -123,12 +123,13 @@ section h2:after {
 }
 
 /* Botones */
-.btn-primary {
+.btn-primary, .btn-outline-primary {
     background-color: var(--morado);
     border-color: var(--morado);
+    color: var(--blanco);
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .btn-outline-primary:hover {
     background-color: var(--verde-agua);
     border-color: var(--verde-agua);
 }
