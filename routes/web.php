@@ -6,10 +6,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AboutController;
 
-
-
-Route::get('/', [\App\Http\Controllers\HomeController::class, 'home']);
+Route::get('/', [HomeController::class, 'home']);
 Route::get('/productos', [ProductosController::class, 'productos']);
-Route::get('/blog', function () {
-    return view('blog');
-});
+
+// Rutas del blog
+Route::get('/blog', [BlogController::class, 'index']);
+Route::get('/blog/{slug}', [BlogController::class, 'show']);
