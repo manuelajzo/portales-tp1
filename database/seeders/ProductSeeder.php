@@ -23,6 +23,7 @@ class ProductSeeder extends Seeder
                 'description' => 'Conocé el mapa que revela tu potencial y las lecciones que has venido a aprender.',
                 'price' => 50000,
                 'category' => 'Astrología',
+                'is_available' => true,
                 'updated_at' => Carbon::now()
             ]
         );

@@ -1,0 +1,51 @@
+.navbar-custom{
+    background-color: #7b5fbf !important;
+    border-bottom: 2px solid #4b0082 !important;
+}
+
+.btn-primary {
+  background-color: #7b5fbf !important;
+  border-color: #4b0082 !important;
+}
+
+.btn-primary:hover {
+  background-color: #4b0082 !important;
+  border-color: #7b5fbf !important;
+}
+
+body {
+  background-color: #ede7ff !important;
+  color: #2e1a47 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #4b0082 !important;
+}
+
+/* Cards personalizados */
+.card {
+  background-color: #bda0ff;
+  border: 1px solid #7b5fbf;
+  box-shadow: 0 4px 8px rgba(75, 0, 130, 0.3);
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+/* Imágenes en cards */
+.card img {
+  border-bottom: 2px solid #7b5fbf;
+}
+
+/* Texto */
+.card-title {
+  color: #4b0082;
+  font-weight: 700;
+}
+
+.card-text {
+  color: #2e1a47;
+}

@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title ?? 'Magia Potagia' }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-DQvkBjpPgn7RC31MCQoOeC9TI2kdqa4+BSgNMNj8v77fdC77Kj5zpWFTJaaAoMbC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg navbar-custom">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Magia Potagia</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,10 +27,27 @@
           <a class="nav-link" href="{{ url('/blog')}}">Blog</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+    @auth
+        <li class="nav-item">
+            <span class="nav-link">Hola, {{ auth()->user()->name }}</span>
+        </li>
+        <li class="nav-item">
+            <form method="POST" action="{{ url('logout') }}">
+                @csrf
+                <button type="submit" class="btn btn-link nav-link" style="display: inline; cursor: pointer;">
+                    Cerrar sesión
+                </button>
+            </form>
+        </li>
+    @endauth
+
+    @guest
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('login') }}">Iniciar sesión</a>
+        </li>
+    @endguest
+</ul>
     </div>
   </div>
 </nav>
