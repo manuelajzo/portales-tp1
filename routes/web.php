@@ -10,9 +10,8 @@ use App\Http\Controllers\AboutController;
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/products', [ProductsController::class, 'products']);
-Route::get('/blog', function () {
-    return view('blog');
-});
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{post:slug}', [BlogController::class, 'show'])->name('blog.show');
 Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::resource('posts', PostController::class);
 });
