@@ -36,7 +36,7 @@
             <a class="nav-link" href="{{ url('admin/posts') }}">Administrar Blog</a>
         </li>
         <li class="nav-item">
-            <form method="POST" action="{{ url('logout') }}">
+            <form method="POST" action="{{ url('logout') }}" id="logout-form" onsubmit="return confirm('¿Estás seguro que deseas cerrar sesión?');">
                 @csrf
                 <button type="submit" class="btn btn-link nav-link" style="display: inline; cursor: pointer;">
                     Cerrar sesión
