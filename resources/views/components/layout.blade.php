@@ -33,7 +33,10 @@
             <span class="nav-link">Hola, {{ auth()->user()->name }}</span>
         </li>
         <li class="nav-item">
-            <form method="POST" action="{{ route('logout') }}">
+            <a class="nav-link" href="{{ url('admin/posts') }}">Administrar Blog</a>
+        </li>
+        <li class="nav-item">
+            <form method="POST" action="{{ url('logout') }}" id="logout-form" onsubmit="return confirm('¿Estás seguro que deseas cerrar sesión?');">
                 @csrf
                 <button type="submit" class="btn btn-link nav-link" style="display: inline; cursor: pointer;">
                     Cerrar sesión
@@ -44,7 +47,7 @@
 
     @guest
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>
+            <a class="nav-link" href="{{ url('login') }}">Iniciar sesión</a>
         </li>
     @endguest
 </ul>
