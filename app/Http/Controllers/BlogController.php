@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
-use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
     public function index()
     {
         $posts = BlogPost::where('is_published', true)
-            ->orderBy('published_at', 'desc')
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return view('blog', compact('posts'));
@@ -18,6 +17,10 @@ class BlogController extends Controller
 
     public function show(BlogPost $post)
     {
+        if (!$post->is_published) {
+            return redirect()->route('blog.index');
+        }
+
         return view('blog.show', compact('post'));
     }
 }

@@ -24,4 +24,16 @@ class BlogPost extends Model
         'is_published' => 'boolean',
         'published_at' => 'datetime'
     ];
+
+    /**
+     * Get the post's image or return placeholder if not found
+     */
+    public function getImageAttribute($value)
+    {
+        if ($value && file_exists(public_path($value))) {
+            return $value;
+        }
+        
+        return 'img/placeholder.jpg';
+    }
 }
