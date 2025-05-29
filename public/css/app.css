@@ -1,51 +1,136 @@
-.navbar-custom{
-    background-color: #7b5fbf !important;
-    border-bottom: 2px solid #4b0082 !important;
-}
-
-.btn-primary {
-  background-color: #7b5fbf !important;
-  border-color: #4b0082 !important;
-}
-
-.btn-primary:hover {
-  background-color: #4b0082 !important;
-  border-color: #7b5fbf !important;
+:root {
+    --mystic-purple: #9b6b9e;
+    --celestial-blue: #7ea4c9;
+    --crystal-teal: #4a919e;
+    --spiritual-gold: #d4af37;
+    --sage-green: #87a878;
+    --cosmic-bg: #1a1a2e;
+    --moonlight: #f4f4f8;
 }
 
 body {
-  background-color: #ede7ff !important;
-  color: #2e1a47 !important;
+    background-color: var(--moonlight);
+    font-family: 'Quicksand', sans-serif;
+    color: #2c2c2c;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #4b0082 !important;
+/* Navbar Customization */
+.navbar-custom {
+    background: linear-gradient(135deg, var(--cosmic-bg), var(--mystic-purple));
+    padding: 1rem 0;
 }
 
-/* Cards personalizados */
+.navbar-custom .navbar-brand {
+    color: var(--spiritual-gold);
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+}
+
+.navbar-custom .nav-link {
+    color: var(--moonlight) !important;
+    transition: color 0.3s ease;
+}
+
+.navbar-custom .nav-link:hover {
+    color: var(--spiritual-gold) !important;
+}
+
+/* Card Customization */
 .card {
-  background-color: #bda0ff;
-  border: 1px solid #7b5fbf;
-  box-shadow: 0 4px 8px rgba(75, 0, 130, 0.3);
-  border-radius: 12px;
-  transition: transform 0.3s ease;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
 .card:hover {
-  transform: scale(1.03);
+    transform: translateY(-5px);
 }
 
-/* Imágenes en cards */
-.card img {
-  border-bottom: 2px solid #7b5fbf;
+.card-header {
+    background: linear-gradient(135deg, var(--mystic-purple), var(--celestial-blue));
+    color: white;
+    border-radius: 15px 15px 0 0 !important;
+    font-family: 'Cinzel', serif;
 }
 
-/* Texto */
-.card-title {
-  color: #4b0082;
-  font-weight: 700;
+/* Button Customization */
+.btn-primary {
+    background-color: var(--mystic-purple);
+    border-color: var(--mystic-purple);
 }
 
-.card-text {
-  color: #2e1a47;
+.btn-primary:hover {
+    background-color: var(--crystal-teal);
+    border-color: var(--crystal-teal);
+}
+
+.btn-secondary {
+    background-color: var(--celestial-blue);
+    border-color: var(--celestial-blue);
+}
+
+/* Table Customization */
+.table {
+    border-collapse: separate;
+    border-spacing: 0 8px;
+}
+
+.table thead th {
+    border-bottom: 2px solid var(--mystic-purple);
+    color: var(--cosmic-bg);
+    font-family: 'Cinzel', serif;
+}
+
+.table tbody tr {
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.table tbody tr:hover {
+    transform: scale(1.01);
+}
+
+/* Badge Customization */
+.badge.bg-success {
+    background-color: var(--sage-green) !important;
+}
+
+.badge.bg-secondary {
+    background-color: var(--celestial-blue) !important;
+}
+
+/* Form Customization */
+.form-control, .form-select {
+    border-radius: 8px;
+    border: 1px solid var(--celestial-blue);
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--mystic-purple);
+    box-shadow: 0 0 0 0.25rem rgba(155, 107, 158, 0.25);
+}
+
+/* Alert Customization */
+.alert {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.alert-success {
+    background-color: var(--sage-green);
+    color: white;
+}
+
+/* Pagination Customization */
+.pagination .page-link {
+    color: var(--mystic-purple);
+    border-color: var(--celestial-blue);
+}
+
+.pagination .active .page-link {
+    background-color: var(--mystic-purple);
+    border-color: var(--mystic-purple);
 }
