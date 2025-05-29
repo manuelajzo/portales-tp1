@@ -20,7 +20,7 @@
           <a class="nav-link active" aria-current="page" href="{{ url('/')}}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url('/productos')}}">Productos</a>
+          <a class="nav-link" href="{{ url('/products')}}">Productos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ url('/blog')}}">Blog</a>
