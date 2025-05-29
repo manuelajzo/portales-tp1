@@ -20,10 +20,10 @@
           <a class="nav-link active" aria-current="page" href="{{ url('/')}}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url('/quienes-somos')}}">Quienes somos</a>
+          <a class="nav-link" href="{{ url('/productos')}}">Productos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url('/peliculas-listado')}}">Peliculas</a>
+          <a class="nav-link" href="{{ url('/blog')}}">Blog</a>
         </li>
       </ul>
       <form class="d-flex" role="search">
