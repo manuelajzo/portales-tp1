@@ -8,7 +8,7 @@ use App\Http\Controllers\AboutController;
 
 
 
-Route::get('/', [\App\Http\Controllers\HomeController::class, 'home']);
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/products', [ProductsController::class, 'products']);
 Route::get('/blog', function () {
     return view('blog');

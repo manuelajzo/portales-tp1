@@ -19,7 +19,7 @@ class ProductSeeder extends Seeder
         \App\Models\Product::updateOrCreate(
             ['name' => 'Carta natal'],
             [
-                'image' => '/public/img/cartanatal.webp',
+                'image' => 'img/cartanatal.webp',
                 'description' => 'Conocé el mapa que revela tu potencial y las lecciones que has venido a aprender.',
                 'price' => 50000,
                 'category' => 'Astrología',
