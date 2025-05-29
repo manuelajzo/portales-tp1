@@ -87,46 +87,84 @@
         {{ $slot }}
     </div>
 
-    <footer class="bg-dark text-light py-4 mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5 class="mb-3"><i class="bi bi-moon-stars"></i> Magia Potagia</h5>
-                    <p>Tu portal holístico para el crecimiento espiritual y personal.</p>
-                </div>
-                <div class="col-md-4">
-                    <h5 class="mb-3">Enlaces Rápidos</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="{{ url('/blog')}}" class="text-light"><i class="bi bi-journal-text"></i> Blog</a></li>
-                        <li><a href="{{ url('/products')}}" class="text-light"><i class="bi bi-gem"></i> Productos</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5 class="mb-3">Síguenos</h5>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com" class="text-light me-2" target="_blank" rel="noopener noreferrer">
-                            <i class="bi bi-facebook"></i>
-                        </a>
-                        <a href="https://www.instagram.com" class="text-light me-2" target="_blank" rel="noopener noreferrer">
-                            <i class="bi bi-instagram"></i>
-                        </a>
-                        <a href="https://www.twitter.com" class="text-light" target="_blank" rel="noopener noreferrer">
-                            <i class="bi bi-twitter-x"></i>
-                        </a>
+    <footer class="footer-custom mt-5">
+        <div class="footer-content py-5">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-section">
+                            <h5 class="footer-title">
+                                <i class="bi bi-moon-stars"></i> Magia Potagia
+                            </h5>
+                            <p class="footer-description">
+                                Descubre el poder de la espiritualidad a través del tarot, 
+                                los cristales y la astrología. Tu viaje hacia el autoconocimiento 
+                                comienza aquí.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-section">
+                            <h5 class="footer-title">
+                                <i class="bi bi-compass-fill"></i> Navegación
+                            </h5>
+                            <ul class="footer-links">
+                                <li>
+                                    <a href="{{ url('/blog')}}">
+                                        <i class="bi bi-journal-text"></i> Blog
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/products')}}">
+                                        <i class="bi bi-gem"></i> Productos
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-section">
+                            <h5 class="footer-title">
+                                <i class="bi bi-stars"></i> Seguinos
+                            </h5>
+                            <div class="social-links mb-3">
+                                <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                                    <i class="bi bi-facebook"></i>
+                                </a>
+                                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                                    <i class="bi bi-instagram"></i>
+                                </a>
+                                <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+                                    <i class="bi bi-twitter-x"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <hr class="mt-4">
-            <div class="text-center">
-                <p class="mb-2">
-                    <i class="bi bi-code-slash"></i> Desarrollado por:
-                    <span class="text-light">Manuela Jaureguialzo</span> |
-                    <span class="text-light">Florencia Fernandez Bugna</span>
-                </p>
-                <p class="mb-2">
-                    <i class="bi bi-mortarboard"></i> DWN4AV - {{ date('Y') }}
-                </p>
-                <small class="text-muted">&copy; {{ date('Y') }} Magia Potagia. Todos los derechos reservados.</small>
+        </div>
+        <div class="footer-bottom py-3">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="developers-info">
+                            <p class="mb-0">
+                                <i class="bi bi-code-slash"></i> Desarrollado por:
+                            </p>
+                            <p class="mb-0 developers">
+                                Manuela Jaureguialzo | Florencia Fernandez Bugna
+                            </p>
+                            <p class="mb-0 course-info">
+                                <i class="bi bi-mortarboard"></i> DWN4AV - {{ date('Y') }} Portales y Comercios Electrónicos
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="mb-0 text-md-end copyright">
+                            &copy; {{ date('Y') }} Magia Potagia. Todos los derechos reservados.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>

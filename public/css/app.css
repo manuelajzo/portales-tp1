@@ -24,6 +24,11 @@ body {
     color: var(--spiritual-gold);
     font-family: 'Cinzel', serif;
     font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.navbar-custom .navbar-brand:hover {
+    transform: translateY(-2px);
 }
 
 .navbar-custom .nav-link {
@@ -40,10 +45,14 @@ body {
     border: none;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Solo aplicar hover a cards que sean enlaces o contengan enlaces principales */
+a.card, .card-link {
     transition: transform 0.3s ease;
 }
 
-.card:hover {
+a.card:hover, .card-link:hover {
     transform: translateY(-5px);
 }
 
@@ -55,6 +64,14 @@ body {
 }
 
 /* Button Customization */
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
 .btn-primary {
     background-color: var(--mystic-purple);
     border-color: var(--mystic-purple);
@@ -85,11 +102,6 @@ body {
 .table tbody tr {
     background: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease;
-}
-
-.table tbody tr:hover {
-    transform: scale(1.01);
 }
 
 /* Badge Customization */
@@ -128,9 +140,150 @@ body {
 .pagination .page-link {
     color: var(--mystic-purple);
     border-color: var(--celestial-blue);
+    transition: all 0.3s ease;
+}
+
+.pagination .page-link:hover {
+    transform: translateY(-2px);
 }
 
 .pagination .active .page-link {
     background-color: var(--mystic-purple);
     border-color: var(--mystic-purple);
+}
+
+/* Social Links */
+.social-links a {
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.social-links a:hover {
+    transform: translateY(-2px);
+}
+
+/* Footer Customization */
+.footer-custom {
+    background: linear-gradient(180deg, var(--moonlight) 0%, var(--cosmic-bg) 100%);
+    color: var(--moonlight);
+    position: relative;
+}
+
+.footer-custom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--spiritual-gold) 20%, 
+        var(--mystic-purple) 50%,
+        var(--spiritual-gold) 80%, 
+        transparent 100%
+    );
+}
+
+.footer-content {
+    background: linear-gradient(180deg, rgba(26, 26, 46, 0.95) 0%, rgba(26, 26, 46, 1) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-section {
+    padding: 1rem;
+    height: 100%;
+}
+
+.footer-title {
+    color: var(--spiritual-gold);
+    font-family: 'Cinzel', serif;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        var(--spiritual-gold) 0%, 
+        var(--mystic-purple) 100%
+    );
+}
+
+.footer-description {
+    color: var(--moonlight);
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 1rem;
+}
+
+.footer-links a {
+    color: var(--moonlight);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    opacity: 0.9;
+}
+
+.footer-links a:hover {
+    color: var(--spiritual-gold);
+    transform: translateX(5px);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    color: var(--moonlight);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    opacity: 0.9;
+}
+
+.social-links a:hover {
+    color: var(--spiritual-gold);
+    transform: translateY(-5px);
+}
+
+.footer-bottom {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1rem 0;
+    position: relative;
+}
+
+.developers-info {
+    color: var(--moonlight);
+}
+
+.developers {
+    color: var(--spiritual-gold);
+    font-family: 'Cinzel', serif;
+    margin: 0.5rem 0;
+}
+
+.course-info {
+    color: var(--celestial-blue);
+}
+
+.copyright {
+    color: var(--moonlight);
+    opacity: 0.8;
 }
