@@ -18,6 +18,7 @@ return new class extends Migration
         $table->text('description')->nullable();
         $table->decimal('price', 8)->nullable();
         $table->string('category')->nullable();
+        $table->boolean('is_available')->default(true);
         $table->timestamps();
         });
     }
