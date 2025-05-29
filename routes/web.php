@@ -13,3 +13,6 @@ Route::get('/products', [ProductsController::class, 'products']);
 Route::get('/blog', function () {
     return view('blog');
 });
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::resource('posts', PostController::class);
+});
