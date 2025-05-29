@@ -35,6 +35,22 @@ body {
     color: var(--dorado) !important;
 }
 
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(rgba(26, 26, 46, 0.7), rgba(26, 26, 46, 0.7)), url('../img/astrologia.jpg');
+    background-size: cover;
+    background-position: center;
+    color: var(--blanco);
+    padding: 5rem 1rem;
+    margin-top: -1.5rem;
+    margin-bottom: 3rem;
+}
+
+.hero-section h1 {
+    font-family: 'Cinzel', serif;
+    margin-bottom: 1.5rem;
+}
+
 /* Cards */
 .card {
     border: none;
@@ -47,6 +63,63 @@ body {
     color: white;
     border-radius: 15px 15px 0 0 !important;
     font-family: 'Cinzel', serif;
+}
+
+.service-card, .product-card, .blog-card {
+    transition: transform 0.3s ease;
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.service-card:hover, .product-card:hover, .blog-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.service-icon {
+    font-size: 2rem;
+    color: var(--morado);
+    margin-bottom: 1rem;
+}
+
+.blog-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-card .card-img-top {
+    height: 250px;
+    object-fit: cover;
+}
+
+/* Secciones */
+section {
+    padding: 2rem 0;
+}
+
+section h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--azul-oscuro);
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+}
+
+section h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--dorado), transparent);
 }
 
 /* Botones */
