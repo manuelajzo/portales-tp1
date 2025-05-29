@@ -1,21 +1,37 @@
 <x-layout>
-    <x-slot:title>{{ $title }}</x-slot:title>
+    <x-slot:title>{{ $post->title }}</x-slot:title>
 
-    <div class="container mx-auto px-4 py-8">
-        <article class="max-w-4xl mx-auto">
-            <img src="{{ $image }}" alt="{{ $title }}" class="w-full h-96 object-cover rounded-lg shadow-lg mb-8">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-            <h1 class="text-4xl font-bold mb-6">{{ $title }}</h1>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('blog.index') }}">Blog</a></li>
+                        <li class="breadcrumb-item active">{{ $post->title }}</li>
+                    </ol>
+                </nav>
 
-            <div class="prose prose-lg max-w-none">
-                {{ $content }}
+                <article>
+                    <h1 class="mb-4">{{ $post->title }}</h1>
+                    
+                    <img src="{{ asset($post->image) }}" class="img-fluid rounded mb-4" alt="{{ $post->title }}">
+                    
+                    <div class="mb-4">
+                        <span class="badge bg-primary">{{ $post->category }}</span>
+                        <span class="text-muted ms-2">{{ $post->published_at->format('d/m/Y') }}</span>
+                    </div>
+
+                    <div class="content">
+                        {{ $post->content }}
+                    </div>
+                </article>
             </div>
-
-            <div class="mt-8 pt-8 border-t">
-                <a href="/blog" class="text-indigo-600 hover:text-indigo-800">
-                    ← Volver al blog
-                </a>
-            </div>
-        </article>
+        </div>
     </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </x-layout> 
