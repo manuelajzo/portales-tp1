@@ -33,6 +33,9 @@
             <span class="nav-link">Hola, {{ auth()->user()->name }}</span>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{{ url('admin/posts') }}">Administrar Blog</a>
+        </li>
+        <li class="nav-item">
             <form method="POST" action="{{ url('logout') }}">
                 @csrf
                 <button type="submit" class="btn btn-link nav-link" style="display: inline; cursor: pointer;">
