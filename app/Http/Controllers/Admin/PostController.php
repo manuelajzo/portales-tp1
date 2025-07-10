@@ -60,7 +60,7 @@ class PostController extends Controller
 
         BlogPost::create($validated);
 
-        return redirect()->route('posts.index')
+        return redirect()->route('admin.posts.index')
             ->with('success', 'Post creado exitosamente.');
     }
 
@@ -101,7 +101,7 @@ class PostController extends Controller
 
         $post->update($validated);
 
-        return redirect()->route('posts.index')
+        return redirect()->route('admin.posts.index')
             ->with('success', 'Post actualizado exitosamente.');
     }
 
@@ -116,7 +116,7 @@ class PostController extends Controller
         $this->deleteImage($post);
         $post->delete();
 
-        return redirect()->route('posts.index')
+        return redirect()->route('admin.posts.index')
             ->with('success', 'Post eliminado exitosamente.');
     }
 

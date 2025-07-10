@@ -19,8 +19,13 @@ Route::get('/blog/{post:slug}', [BlogController::class, 'show'])->name('blog.sho
 
 // ADMIN ROUTES
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-    Route::resource('posts', PostController::class);
+    Route::resource('posts', PostController::class)->names('admin.posts');
     Route::resource('users', App\Http\Controllers\Admin\UserController::class)->names('admin.users');
+    
+    // Profile routes
+    Route::get('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'show'])->name('admin.profile.show');
+    Route::get('/profile/edit', [App\Http\Controllers\Admin\ProfileController::class, 'edit'])->name('admin.profile.edit');
+    Route::put('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('admin.profile.update');
 });
 
 // AUTH ROUTES

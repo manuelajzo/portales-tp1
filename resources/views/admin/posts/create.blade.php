@@ -9,7 +9,7 @@
                         <h2 class="mb-0">Crear Nuevo Post</h2>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
                             @include('admin.posts._form')
                         </form>
                     </div>

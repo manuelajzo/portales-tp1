@@ -21,54 +21,76 @@
     <link rel="icon" type="image/png" href="{{ asset('img/favicon.svg') }}">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-custom" role="navigation">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <i class="bi bi-moon-stars"></i> Magia Potagia
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <span class="nav-link">
-                                <i class="bi bi-person-circle"></i> Hola, {{ auth()->user()->name }}
-                                <span class="badge {{ auth()->user()->isAdmin() ? 'bg-danger' : 'bg-primary' }} ms-1">
-                                    {{ auth()->user()->isAdmin() ? 'Admin' : 'Usuario' }}
-                                </span>
-                            </span>
-                        </li>
-                        @if((auth()->user()->role ?? '') === 'admin')
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-gear"></i> Administración
-                                </a>
-                                <ul class="dropdown-menu">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url('/') }}">
+                <i class="bi bi-moon-stars"></i> Magia Potagia
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/') }}">
+                            <i class="bi bi-house-heart"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/products') }}">
+                            <i class="bi bi-gem"></i> Productos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/blog') }}">
+                            <i class="bi bi-journal-text"></i> Blog
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    @auth
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle me-1"></i>
+                                <span>Hola, {{ auth()->user()->name }}</span>
+                                @if(auth()->user()->isAdmin())
+                                    <i class="bi bi-shield-lock ms-2" style="color: var(--dorado);" title="Admin"></i>
+                                @endif
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('admin.profile.show') }}">
+                                        <i class="bi bi-person"></i> Mi perfil
+                                    </a>
+                                </li>
+                                @if(auth()->user()->isAdmin())
                                     <li>
-                                        <a class="dropdown-item" href="{{ url('admin/posts') }}">
+                                        <h6 class="dropdown-header">Administración</h6>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('admin.posts.index') }}">
                                             <i class="bi bi-pencil-square"></i> Administrar Blog
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="{{ url('admin/users') }}">
+                                        <a class="dropdown-item" href="{{ route('admin.users.index') }}">
                                             <i class="bi bi-people"></i> Administrar Usuarios
                                         </a>
                                     </li>
-                                </ul>
-                            </li>
-                        @endif
-                        <li class="nav-item">
-                            <form method="POST" action="{{ url('logout') }}" id="logout-form" onsubmit="return confirm('¿Estás segura que deseas cerrar sesión?');">
-                                @csrf
-                                <button type="submit" class="btn btn-link nav-link">
-                                    <i class="bi bi-box-arrow-right"></i> Cerrar sesión
-                                </button>
-                            </form>
+                                @endif
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <form method="POST" action="{{ url('logout') }}">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">
+                                            <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
                         </li>
                     @endauth
-
                     @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('login') }}">
@@ -151,8 +173,8 @@
     <footer class="footer-custom mt-5">
         <div class="footer-content">
             <div class="container">
-                <div class="row g-4">
-                    <section class="col-md-4">
+                <div class="row g-4 text-center justify-content-center">
+                    <div class="col-md-4">
                         <div class="footer-section">
                             <h5 class="footer-title">
                                 <i class="bi bi-moon-stars"></i> Magia Potagia
@@ -206,10 +228,10 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="footer-bottom text-center mt-3">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
+                <div class="row justify-content-center">
+                    <div class="col-12">
                         <p class="mb-1">
                             <i class="bi bi-code-slash"></i> Desarrollado por:
                         </p>
@@ -219,9 +241,7 @@
                         <p class="mb-0 course-info">
                             <i class="bi bi-mortarboard"></i> DWN4AV - {{ date('Y') }} Portales y Comercios Electrónicos
                         </p>
-                    </div>
-                    <div class="col-md-6 text-md-end">
-                        <p class="mb-0 copyright">
+                        <p class="mb-0 copyright mt-2">
                             &copy; {{ date('Y') }} Magia Potagia
                         </p>
                     </div>
@@ -229,6 +249,19 @@
             </div>
         </div>
     </footer>
+    <style>
+        .footer-custom .footer-content {
+            text-align: center;
+        }
+        .footer-custom .footer-title {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .footer-bottom {
+            text-align: center;
+        }
+    </style>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"></script>
 </body>

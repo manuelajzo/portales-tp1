@@ -5,15 +5,10 @@
 
     <div class="container py-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1>Administrar Posts</h1>
-            <div>
-                <a href="{{ route('admin.users.index') }}" class="btn btn-outline-secondary me-2">
-                    <i class="bi bi-people"></i> Gestionar Usuarios
-                </a>
-                <a href="{{ route('posts.create') }}" class="btn btn-primary">
-                    <i class="bi bi-plus-circle"></i> Crear Nuevo Post
-                </a>
-            </div>
+            <h1>Administrar Blog</h1>
+            <a href="{{ route('admin.posts.create') }}" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Crear Nuevo Post
+            </a>
         </div>
 
         @if(session('success'))
@@ -50,10 +45,10 @@
                                     <td>{{ $post->published_at ? $post->published_at->format('d/m/Y') : 'No publicado' }}</td>
                                     <td>
                                         <div class="d-flex justify-content-end gap-2">
-                                            <a href="{{ route('posts.edit', $post) }}" class="btn btn-sm btn-primary">
+                                            <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-sm btn-primary">
                                                 <i class="bi bi-pencil-square"></i> Editar
                                             </a>
-                                            <form action="{{ route('posts.destroy', $post) }}" method="POST" class="d-inline">
+                                            <form action="{{ route('admin.posts.destroy', $post) }}" method="POST" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro que deseas eliminar este post?')">

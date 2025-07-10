@@ -66,7 +66,7 @@
 </div>
 
 <div class="d-flex justify-content-between">
-    <a href="{{ route('posts.index') }}" class="btn btn-secondary">Cancelar</a>
+    <a href="{{ route('admin.posts.index') }}" class="btn btn-secondary">Cancelar</a>
     <button type="submit" class="btn btn-primary">
         {{ isset($post) ? 'Actualizar Post' : 'Crear Post' }}
     </button>

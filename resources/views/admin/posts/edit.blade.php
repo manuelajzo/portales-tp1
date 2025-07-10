@@ -11,7 +11,7 @@
                         <h2 class="mb-0">Editar Post</h2>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('posts.update', $post) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.posts.update', $post) }}" method="POST" enctype="multipart/form-data">
                             @method('PUT')
                             @include('admin.posts._form')
                         </form>
