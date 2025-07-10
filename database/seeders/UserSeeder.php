@@ -9,15 +9,20 @@ use App\Models\User;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
        User::create([
             'name' => 'Admin',
             'email' => 'admin@mail.com',
             'password' => Hash::make('admin123'),
+            'role' => 'admin',
        ]);
+
+         User::create([
+                'name' => 'User',
+                'email' => 'user@mail.com',
+                'password' => Hash::make('user123'),
+                'role' => 'user',
+        ]);
     }
 }

@@ -1,14 +1,19 @@
 <x-layout>
     <x-slot:title>Administrar Posts</x-slot:title>
 
-    
+
 
     <div class="container py-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1>Administrar Posts</h1>
-            <a href="{{ route('posts.create') }}" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> Crear Nuevo Post
-            </a>
+            <div>
+                <a href="{{ route('admin.users.index') }}" class="btn btn-outline-secondary me-2">
+                    <i class="bi bi-people"></i> Gestionar Usuarios
+                </a>
+                <a href="{{ route('posts.create') }}" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> Crear Nuevo Post
+                </a>
+            </div>
         </div>
 
         @if(session('success'))

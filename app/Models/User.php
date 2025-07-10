@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Order;
 
 class User extends Authenticatable
 {
@@ -53,11 +54,26 @@ class User extends Authenticatable
     public function isAdmin(): bool {
         return $this->role === self::ROLE_ADMIN;
     }
-    
+
     /**
      * Check if user is regular user
      */
     public function isUser(): bool {
         return $this->role === self::ROLE_USER;
     }
+
+    public function orders()
+    {
+    return $this->hasMany(Order::class);
+    }
+
+    public function products()
+    {
+    return $this->belongsToMany(Product::class, 'orders')
+                ->withPivot('total_amount', 'status', 'order_date')
+                ->withTimestamps();
+    }
 }
+
+
+

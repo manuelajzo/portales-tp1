@@ -16,9 +16,13 @@ return new class extends Migration
         $table->string('name');
         $table->string('image')->nullable();
         $table->text('description')->nullable();
-        $table->decimal('price', 8)->nullable();
+        $table->decimal('price', 8, 2)->nullable();
         $table->string('category')->nullable();
         $table->boolean('is_available')->default(true);
+        $table->integer('duration_minutes')->nullable(); // Duration in minutes for services
+        $table->string('difficulty_level')->nullable(); // Beginner, Intermediate, Advanced
+        $table->text('whats_included')->nullable(); // What's included in the service/product
+        $table->string('delivery_method')->nullable(); // Online, In-person, Hybrid
         $table->timestamps();
         });
     }

@@ -25,7 +25,11 @@ class ProductSeeder extends Seeder
                 'price' => 15000,
                 'category' => 'Tarot',
                 'image' => 'img/tarot.jpg',
-                'is_available' => true
+                'is_available' => true,
+                'duration_minutes' => 60,
+                'difficulty_level' => 'Principiante',
+                'whats_included' => 'Sesión de 60 minutos, interpretación personalizada, consejos para el futuro',
+                'delivery_method' => 'Online',
             ],
             [
                 'name' => 'Carta Natal Completa',
@@ -33,7 +37,11 @@ class ProductSeeder extends Seeder
                 'price' => 25000,
                 'category' => 'Astrología',
                 'image' => 'img/cartanatal.webp',
-                'is_available' => true
+                'is_available' => true,
+                'duration_minutes' => 120,
+                'difficulty_level' => 'Intermedio',
+                'whats_included' => 'Análisis completo de carta natal, informe escrito detallado, sesión de interpretación de 2 horas',
+                'delivery_method' => 'Online',
             ],
             [
                 'name' => 'Kit de Cristales para Principiantes',
@@ -41,7 +49,11 @@ class ProductSeeder extends Seeder
                 'price' => 12000,
                 'category' => 'Cristales',
                 'image' => 'img/cristales.jpg',
-                'is_available' => true
+                'is_available' => true,
+                'duration_minutes' => null,
+                'difficulty_level' => 'Principiante',
+                'whats_included' => 'Kit de cristales, guía de uso, manual de limpieza y programación',
+                'delivery_method' => 'Envío',
             ],
             [
                 'name' => 'Lectura de Arcanos Mayores',
@@ -49,7 +61,11 @@ class ProductSeeder extends Seeder
                 'price' => 12000,
                 'category' => 'Tarot',
                 'image' => 'img/arcanos-mayores.jpg',
-                'is_available' => true
+                'is_available' => true,
+                'duration_minutes' => 45,
+                'difficulty_level' => 'Principiante',
+                'whats_included' => 'Sesión de 45 minutos, interpretación de Arcanos Mayores, consejos espirituales',
+                'delivery_method' => 'Online',
             ]
         ];
 
@@ -62,6 +78,10 @@ class ProductSeeder extends Seeder
                     'category' => $product['category'],
                     'image' => $product['image'],
                     'is_available' => $product['is_available'],
+                    'duration_minutes' => $product['duration_minutes'],
+                    'difficulty_level' => $product['difficulty_level'],
+                    'whats_included' => $product['whats_included'],
+                    'delivery_method' => $product['delivery_method'],
                     'updated_at' => Carbon::now()
                 ]
             );

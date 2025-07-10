@@ -24,4 +24,9 @@
 
         <button type="submit" class="btn btn-primary">Ingresar</button>
     </form>
+
+    <div class="text-center mt-3">
+        <span>¿No tenés cuenta?</span>
+        <a href="{{ route('register') }}" class="text-primary fw-bold">Registrate</a>
+    </div>
 </x-layout>

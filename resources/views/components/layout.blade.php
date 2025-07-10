@@ -21,73 +21,85 @@
     <link rel="icon" type="image/png" href="{{ asset('img/favicon.svg') }}">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <i class="bi bi-moon-stars"></i> Magia Potagia
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/')}}">
-                            <i class="bi bi-house-heart"></i> Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/products')}}">
-                            <i class="bi bi-gem"></i> Productos
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/blog')}}">
-                            <i class="bi bi-journal-text"></i> Blog
-                        </a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    @auth
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-custom" role="navigation">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    <i class="bi bi-moon-stars"></i> Magia Potagia
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <span class="nav-link">
-                                <i class="bi bi-person-circle"></i> Hola, {{ auth()->user()->name }}
-                                <span class="badge {{ auth()->user()->isAdmin() ? 'bg-danger' : 'bg-primary' }} ms-1">
-                                    {{ auth()->user()->isAdmin() ? 'Admin' : 'Usuario' }}
-                                </span>
-                            </span>
-                        </li>
-                        @if((auth()->user()->role ?? '') === 'admin')
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('admin/posts') }}">
-                                    <i class="bi bi-pencil-square"></i> Administrar Blog
-                                </a>
-                            </li>
-                        @endif
-                        <li class="nav-item">
-                            <form method="POST" action="{{ url('logout') }}" id="logout-form" onsubmit="return confirm('¿Estás segura que deseas cerrar sesión?');">
-                                @csrf
-                                <button type="submit" class="btn btn-link nav-link">
-                                    <i class="bi bi-box-arrow-right"></i> Cerrar sesión
-                                </button>
-                            </form>
-                        </li>
-                    @endauth
-
-                    @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('login') }}">
-                                <i class="bi bi-box-arrow-in-right"></i> Iniciar sesión
+                            <a class="nav-link" href="{{ url('/') }}">
+                                <i class="bi bi-house-heart"></i> Home
                             </a>
                         </li>
-                    @endguest
-                </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/products') }}">
+                                <i class="bi bi-gem"></i> Productos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/blog') }}">
+                                <i class="bi bi-journal-text"></i> Blog
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        @auth
+                            <li class="nav-item d-flex align-items-center">
+                                <span style="color: #fff; font-weight: 500;">
+                                    <i class="bi bi-person-circle"></i> Hola, {{ auth()->user()->name }}
+                                </span>
+                            </li>
+                            @if((auth()->user()->role ?? '') === 'admin')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('admin/posts') }}">
+                                        <i class="bi bi-pencil-square"></i> Administrar Blog
+                                    </a>
+                                </li>
+                            @else
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('user.dashboard') }}">
+                                        <i class="bi bi-person"></i> Mi Perfil
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('user.orders') }}">
+                                        <i class="bi bi-list-check"></i> Mis Órdenes
+                                    </a>
+                                </li>
+                            @endif
+                            <li class="nav-item">
+                                <form method="POST" action="{{ url('logout') }}" id="logout-form">
+                                    @csrf
+                                    <button type="submit" class="btn btn-link nav-link">
+                                        <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+                                    </button>
+                                </form>
+                            </li>
+                        @endauth
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('login') }}">
+                                    <i class="bi bi-box-arrow-in-right"></i> Iniciar sesión
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('register') }}">
+                                    <i class="bi bi-person-plus"></i> Registrarse
+                                </a>
+                            </li>
+                        @endguest
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
-    <!-- Contenido principal -->
     <main class="container py-4">
         @if(session('error'))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -95,23 +107,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         @endif
-        
-        @if(session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <i class="bi bi-check-circle"></i> {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
-        
         {{ $slot }}
     </main>
 
-    <!-- Footer -->
     <footer class="footer-custom mt-5">
         <div class="footer-content">
             <div class="container">
                 <div class="row g-4">
-                    <div class="col-md-4">
+                    <section class="col-md-4">
                         <div class="footer-section">
                             <h5 class="footer-title">
                                 <i class="bi bi-moon-stars"></i> Magia Potagia
@@ -122,27 +125,29 @@
                                 comienza acá.
                             </p>
                         </div>
-                    </div>
-                    <div class="col-md-4">
+                    </section>
+                    <section class="col-md-4">
                         <div class="footer-section">
                             <h5 class="footer-title">
                                 <i class="bi bi-compass-fill"></i> Links
                             </h5>
-                            <ul class="footer-links">
-                                <li>
-                                    <a href="{{ url('/blog')}}">
-                                        <i class="bi bi-journal-text"></i> Blog
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('/products')}}">
-                                        <i class="bi bi-gem"></i> Productos
-                                    </a>
-                                </li>
-                            </ul>
+                            <nav aria-label="Enlaces del footer">
+                                <ul class="footer-links">
+                                    <li>
+                                        <a href="{{ url('/blog')}}">
+                                            <i class="bi bi-journal-text"></i> Blog
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/products')}}">
+                                            <i class="bi bi-gem"></i> Productos
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
-                    </div>
-                    <div class="col-md-4">
+                    </section>
+                    <section class="col-md-4">
                         <div class="footer-section">
                             <h5 class="footer-title">
                                 <i class="bi bi-stars"></i> Seguinos
@@ -159,7 +164,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </section>
                 </div>
             </div>
         </div>
@@ -186,7 +191,6 @@
             </div>
         </div>
     </footer>
-
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"></script>
 </body>
