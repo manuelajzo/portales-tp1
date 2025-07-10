@@ -57,6 +57,11 @@ class UserController extends Controller
      */
     public function createOrder(Request $request)
     {
+        // Validar si el usuario es productor
+        if (Auth::user()->isProducer()) {
+            return redirect()->back()->with('error', 'Los usuarios con rol productor no pueden contratar servicios.');
+        }
+
         $request->validate([
             'product_id' => 'required|exists:products,id',
             'notes' => 'nullable|string|max:500',

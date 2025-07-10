@@ -13,7 +13,7 @@
                 <article class="card" style="width: 18rem; border: 1px solid #ccc; padding: 10px;">
                     @if($product->image)
                         <figure>
-                            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" style="width: 100%; max-width: 300px;">
+                            <img src="{{ asset($product->image) }}" alt="Imagen de {{ $product->name }}" style="width: 100%; max-width: 300px;" aria-label="Imagen del producto {{ $product->name }}">
                             <figcaption class="visually-hidden">{{ $product->name }}</figcaption>
                         </figure>
                     @endif
@@ -26,16 +26,16 @@
                                 $orden = Auth::user()->orders->where('product_id', $product->id)->first();
                             @endphp
                             @if($orden)
-                                <form action="{{ route('user.orders.cancel', $orden) }}" method="POST" onsubmit="return confirm('¿Estás seguro que deseas cancelar este servicio?');">
+                                <form action="{{ route('user.orders.cancel', $orden) }}" method="POST" onsubmit="return confirm('¿Estás seguro que deseas cancelar este servicio? Esta acción no se puede deshacer.');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger w-100 mt-2">Cancelar servicio</button>
+                                    <button type="submit" class="btn btn-danger w-100 mt-2" aria-label="Cancelar servicio {{ $product->name }}">Cancelar servicio</button>
                                 </form>
                             @else
                                 <form action="{{ route('user.orders.store') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                    <button type="submit" class="btn btn-primary w-100 mt-2">Contratar Servicio</button>
+                                    <button type="submit" class="btn btn-primary w-100 mt-2" aria-label="Contratar servicio {{ $product->name }}">Contratar Servicio</button>
                                 </form>
                             @endif
                         @else

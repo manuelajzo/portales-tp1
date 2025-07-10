@@ -22,7 +22,7 @@
             @foreach($services as $service)
                 <div class="col-md-4">
                     <div class="card h-100 service-card">
-                        <img src="{{ asset($service['image']) }}" class="card-img-top" alt="{{ $service['title'] }}">
+                        <img src="{{ asset($service['image']) }}" class="card-img-top" alt="Imagen de {{ $service['title'] }}" aria-label="Imagen representativa de {{ $service['title'] }}">
                         <div class="card-body text-center">
                             <i class="bi {{ $service['icon'] }} service-icon"></i>
                             <h3 class="card-title h4">{{ $service['title'] }}</h3>
@@ -42,7 +42,7 @@
                 @foreach($featuredProducts as $product)
                     <div class="col-md-4">
                         <div class="card h-100 product-card">
-                            <img src="{{ asset($product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+                            <img src="{{ asset($product->image) }}" class="card-img-top" alt="Imagen de {{ $product->name }}" aria-label="Imagen del producto {{ $product->name }}">
                             <div class="card-body">
                                 <h3 class="card-title h5">{{ $product->name }}</h3>
                                 <p class="card-text">{{ $product->description }}</p>
@@ -68,7 +68,7 @@
                 @foreach($latestPosts as $post)
                     <div class="col-md-4">
                         <div class="card h-100 blog-card">
-                            <img src="{{ asset($post->image) }}" class="card-img-top" alt="{{ $post->title }}">
+                            <img src="{{ asset($post->image) }}" class="card-img-top" alt="Imagen de {{ $post->title }}" aria-label="Imagen del post {{ $post->title }}">
                             <div class="card-body">
                                 <span class="badge bg-primary mb-2">{{ $post->category }}</span>
                                 <h3 class="card-title h5">{{ $post->title }}</h3>

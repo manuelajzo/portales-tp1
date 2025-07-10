@@ -3,7 +3,7 @@
 <div class="mb-3">
     <label for="title" class="form-label">Título</label>
     <input type="text" class="form-control @error('title') is-invalid @enderror" 
-        id="title" name="title" value="{{ old('title', $post->title ?? '') }}" required>
+        id="title" name="title" value="{{ old('title', $post->title ?? '') }}" aria-label="Ingresa el título del post">
     @error('title')
         <div class="invalid-feedback">{{ $message }}</div>
     @enderror
@@ -12,7 +12,7 @@
 <div class="mb-3">
     <label for="category" class="form-label">Categoría</label>
     <select class="form-select @error('category') is-invalid @enderror" 
-        id="category" name="category" required>
+        id="category" name="category" aria-label="Selecciona una categoría para el post">
         <option value="">Selecciona una categoría</option>
         @foreach(['Tarot', 'Cristales', 'Astrología'] as $category)
             <option value="{{ $category }}" {{ old('category', $post->category ?? '') == $category ? 'selected' : '' }}>
@@ -37,7 +37,7 @@
 <div class="mb-3">
     <label for="content" class="form-label">Contenido</label>
     <textarea class="form-control @error('content') is-invalid @enderror" 
-        id="content" name="content" rows="6" required>{{ old('content', $post->content ?? '') }}</textarea>
+        id="content" name="content" rows="6" aria-label="Ingresa el contenido del post">{{ old('content', $post->content ?? '') }}</textarea>
     @error('content')
         <div class="invalid-feedback">{{ $message }}</div>
     @enderror
@@ -47,11 +47,11 @@
     <label for="image" class="form-label">Imagen</label>
     @if(isset($post) && $post->image)
         <div class="mb-2">
-            <img src="{{ asset($post->image) }}" alt="Current image" class="img-thumbnail" style="max-height: 200px">
+            <img src="{{ asset($post->image) }}" alt="Imagen actual del post" class="img-thumbnail" style="max-height: 200px" aria-label="Imagen actual del post">
         </div>
     @endif
     <input type="file" class="form-control @error('image') is-invalid @enderror" 
-        id="image" name="image">
+        id="image" name="image" aria-label="Selecciona una imagen para el post">
     @error('image')
         <div class="invalid-feedback">{{ $message }}</div>
     @enderror

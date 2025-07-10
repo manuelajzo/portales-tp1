@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('img/favicon.svg') }}">
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.svg') }}" alt="Favicon de Magia Potagia">
 </head>
 <body>
     <header>
@@ -33,17 +33,17 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/') }}">
-                                <i class="bi bi-house-heart"></i> Home
-                            </a>
+                                                            <a class="nav-link" href="{{ url('/') }}" aria-label="Ir a la página de inicio">
+                                    <i class="bi bi-house-heart"></i> Home
+                                </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/products') }}">
+                            <a class="nav-link" href="{{ url('/products') }}" aria-label="Ver todos los productos">
                                 <i class="bi bi-gem"></i> Productos
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/blog') }}">
+                            <a class="nav-link" href="{{ url('/blog') }}" aria-label="Leer el blog">
                                 <i class="bi bi-journal-text"></i> Blog
                             </a>
                         </li>
@@ -58,7 +58,7 @@
                             @if((auth()->user()->role ?? '') === 'admin')
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('admin/posts') }}">
-                                        <i class="bi bi-pencil-square"></i> Administrar Blog
+                                        <i class="bi bi-pencil-square"></i> Panel de Administración
                                     </a>
                                 </li>
                             @else

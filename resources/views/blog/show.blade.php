@@ -14,7 +14,7 @@
                 <article>
                     <h1 class="mb-4">{{ $post->title }}</h1>
 
-                    <img src="{{ asset($post->image) }}" class="img-fluid rounded mb-4" alt="{{ $post->title }}">
+                    <img src="{{ asset($post->image) }}" class="img-fluid rounded mb-4" alt="Imagen de {{ $post->title }}" aria-label="Imagen principal del post {{ $post->title }}">
 
                     <div class="mb-4">
                         <span class="badge bg-primary">{{ $post->category }}</span>

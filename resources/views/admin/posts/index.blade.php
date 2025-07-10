@@ -53,10 +53,10 @@
                                             <a href="{{ route('posts.edit', $post) }}" class="btn btn-sm btn-primary">
                                                 <i class="bi bi-pencil-square"></i> Editar
                                             </a>
-                                            <form action="{{ route('posts.destroy', $post) }}" method="POST" class="d-inline">
+                                            <form action="{{ route('posts.destroy', $post) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro que deseas eliminar este post? Esta acción no se puede deshacer.')">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro que deseas eliminar este post?')">
+                                                <button type="submit" class="btn btn-sm btn-danger" aria-label="Eliminar post {{ $post->title }}">
                                                     <i class="bi bi-trash"></i> Eliminar
                                                 </button>
                                             </form>

@@ -1,0 +1,19 @@
+# Archivo de ejemplo para la base de datos SQLite
+# Este archivo debe ser copiado como 'fernandezbugna_jaureguialzo.sqlite' en la carpeta database/
+# 
+# Comandos para configurar la base de datos:
+# 
+# 1. Crear la base de datos:
+# touch database/fernandezbugna_jaureguialzo.sqlite
+# 
+# 2. Ejecutar migraciones:
+# php artisan migrate
+# 
+# 3. Ejecutar seeders:
+# php artisan db:seed
+# 
+# 4. Verificar que la base de datos se creó correctamente:
+# ls -la database/
+# 
+# La base de datos debe tener el nombre exacto: fernandezbugna_jaureguialzo.sqlite
+# según la consigna del trabajo práctico. 

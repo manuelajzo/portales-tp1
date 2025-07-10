@@ -8,7 +8,7 @@
             @foreach($posts as $post)
             <div class="col-md-4">
                 <div class="card h-100">
-                    <img src="{{ asset($post->image) }}" class="card-img-top" alt="{{ $post->title }}" style="height: 200px; object-fit: cover;">
+                    <img src="{{ asset($post->image) }}" class="card-img-top" alt="Imagen de {{ $post->title }}" style="height: 200px; object-fit: cover;" aria-label="Imagen del post {{ $post->title }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ $post->title }}</h5>
                         <p class="card-text">{{ $post->short_description }}</p>

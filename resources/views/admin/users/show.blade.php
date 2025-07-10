@@ -57,9 +57,10 @@
                                                 <div class="d-flex align-items-center mb-3">
                                                     @if($order->product->image)
                                                         <img src="{{ asset($order->product->image) }}"
-                                                             alt="{{ $order->product->name }}"
+                                                             alt="Imagen de {{ $order->product->name }}"
                                                              class="rounded me-3"
-                                                             style="width: 60px; height: 60px; object-fit: cover;">
+                                                             style="width: 60px; height: 60px; object-fit: cover;"
+                                                             aria-label="Imagen del producto {{ $order->product->name }}">
                                                     @endif
                                                     <div>
                                                         <h6 class="card-title mb-1">{{ $order->product->name }}</h6>

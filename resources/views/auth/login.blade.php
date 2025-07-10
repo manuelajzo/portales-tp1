@@ -8,7 +8,7 @@
 
         <div class="mb-3">
             <label for="email" class="form-label">Correo electrónico</label>
-            <input type="email" name="email" class="form-control" value="{{ old('email') }}" required>
+            <input type="email" name="email" class="form-control" value="{{ old('email') }}" aria-label="Ingresa tu correo electrónico">
             @error('email')
                 <div class="text-danger mt-1">{{ $message }}</div>
             @enderror
@@ -16,7 +16,7 @@
 
         <div class="mb-3">
             <label for="password" class="form-label">Contraseña</label>
-            <input type="password" name="password" class="form-control" required>
+            <input type="password" name="password" class="form-control" aria-label="Ingresa tu contraseña">
             @error('password')
                 <div class="text-danger mt-1">{{ $message }}</div>
             @enderror

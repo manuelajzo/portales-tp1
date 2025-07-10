@@ -18,6 +18,7 @@ class User extends Authenticatable
 
     const ROLE_USER = 'user';
     const ROLE_ADMIN = 'admin';
+    const ROLE_PRODUCER = 'productor';
 
     /**
      * Los atributos que son asignables masivamente.
@@ -67,6 +68,15 @@ class User extends Authenticatable
      */
     public function isUser(): bool {
         return $this->role === self::ROLE_USER;
+    }
+
+    /**
+     * Verifica si el usuario es productor.
+     *
+     * @return bool
+     */
+    public function isProducer(): bool {
+        return $this->role === self::ROLE_PRODUCER;
     }
 
     /**
