@@ -90,6 +90,14 @@ class User extends Authenticatable
                 ->withPivot('total_amount', 'status', 'order_date')
                 ->withTimestamps();
     }
+
+    /**
+     * Get the services contracted by the user
+     */
+    public function userServices()
+    {
+        return $this->hasMany(UserService::class);
+    }
 }
 
 

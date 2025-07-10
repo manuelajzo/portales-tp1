@@ -1,100 +1,125 @@
 <x-layout>
+    <x-slot:title>Detalle de Usuario - {{ $user->name }}</x-slot:title>
+
     <div class="container py-5">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Usuarios</a></li>
+                <li class="breadcrumb-item active">{{ $user->name }}</li>
+            </ol>
+        </nav>
+
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1>Detalle de Usuario</h1>
-            <a href="{{ route('admin.users.index') }}" class="btn btn-outline-primary">
-                <i class="bi bi-arrow-left"></i> Volver a Usuarios
-            </a>
+            <div class="d-flex gap-2">
+                <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary">
+                    <i class="bi bi-pencil-square"></i> Editar Usuario
+                </a>
+                <a href="{{ route('admin.users.index') }}" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Volver
+                </a>
+            </div>
         </div>
 
         <div class="row">
-            <!-- Información del Usuario -->
-            <div class="col-md-4">
-                <div class="card shadow-sm mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title mb-3">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
                             <i class="bi bi-person-circle"></i> Información Personal
                         </h5>
-                        <div class="mb-3">
-                            <strong>ID:</strong> {{ $user->id }}
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-sm-4"><strong>ID:</strong></div>
+                            <div class="col-sm-8">{{ $user->id }}</div>
                         </div>
-                        <div class="mb-3">
-                            <strong>Nombre:</strong> {{ $user->name }}
+                        <div class="row mb-3">
+                            <div class="col-sm-4"><strong>Nombre:</strong></div>
+                            <div class="col-sm-8">{{ $user->name }}</div>
                         </div>
-                        <div class="mb-3">
-                            <strong>Email:</strong> {{ $user->email }}
+                        <div class="row mb-3">
+                            <div class="col-sm-4"><strong>Email:</strong></div>
+                            <div class="col-sm-8">{{ $user->email }}</div>
                         </div>
-                        <div class="mb-3">
-                            <strong>Rol:</strong>
-                            <span class="badge {{ $user->role === 'admin' ? 'bg-danger' : 'bg-primary' }}">
-                                {{ ucfirst($user->role) }}
-                            </span>
+                        <div class="row mb-3">
+                            <div class="col-sm-4"><strong>Rol:</strong></div>
+                            <div class="col-sm-8">
+                                <span class="badge {{ $user->isAdmin() ? 'bg-danger' : 'bg-primary' }}">
+                                    {{ $user->isAdmin() ? 'Administrador' : 'Usuario' }}
+                                </span>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <strong>Fecha de Registro:</strong> {{ $user->created_at->format('d/m/Y H:i') }}
+                        <div class="row mb-3">
+                            <div class="col-sm-4"><strong>Fecha de Registro:</strong></div>
+                            <div class="col-sm-8">{{ $user->created_at->format('d/m/Y H:i:s') }}</div>
                         </div>
-                        <div class="mb-3">
-                            <strong>Última Actualización:</strong> {{ $user->updated_at->format('d/m/Y H:i') }}
+                        <div class="row mb-3">
+                            <div class="col-sm-4"><strong>Última Actualización:</strong></div>
+                            <div class="col-sm-8">{{ $user->updated_at->format('d/m/Y H:i:s') }}</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Servicios Contratados -->
-            <div class="col-md-8">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title mb-3">
-                            <i class="bi bi-list-check"></i> Servicios Contratados
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-gear"></i> Servicios Contratados
                         </h5>
-
-                        @if($user->orders->count() > 0)
-                            <div class="row g-3">
-                                @foreach($user->orders as $order)
-                                    <div class="col-md-6">
-                                        <div class="card border">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center mb-3">
-                                                    @if($order->product->image)
-                                                        <img src="{{ asset($order->product->image) }}"
-                                                             alt="{{ $order->product->name }}"
-                                                             class="rounded me-3"
-                                                             style="width: 60px; height: 60px; object-fit: cover;">
-                                                    @endif
-                                                    <div>
-                                                        <h6 class="card-title mb-1">{{ $order->product->name }}</h6>
-                                                        <span class="badge {{ $order->status === 'completed' ? 'bg-success' : ($order->status === 'pending' ? 'bg-warning' : 'bg-danger') }}">
-                                                            {{ ucfirst($order->status) }}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-2">
-                                                    <strong>Precio:</strong> ${{ number_format($order->total_amount, 0, ',', '.') }}
-                                                </div>
-                                                <div class="mb-2">
-                                                    <strong>Fecha de Contratación:</strong> {{ $order->order_date->format('d/m/Y') }}
-                                                </div>
-                                                @if($order->notes)
-                                                    <div class="mb-2">
-                                                        <strong>Notas:</strong> {{ $order->notes }}
-                                                    </div>
-                                                @endif
-                                                <div class="small text-muted">
-                                                    <strong>ID de Orden:</strong> #{{ $order->id }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
+                    </div>
+                    <div class="card-body">
+                        @if($userServices->count() > 0)
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Servicio</th>
+                                            <th>Precio</th>
+                                            <th>Estado</th>
+                                            <th>Expira</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($userServices as $service)
+                                            <tr>
+                                                <td>{{ $service->product->name }}</td>
+                                                <td>${{ number_format($service->price, 2) }}</td>
+                                                <td>
+                                                    <span class="badge bg-{{ $service->status === 'active' ? 'success' : 'secondary' }}">
+                                                        {{ $service->status }}
+                                                    </span>
+                                                </td>
+                                                <td>{{ $service->expires_at ? $service->expires_at->format('d/m/Y') : 'No expira' }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         @else
-                            <div class="alert alert-info">
-                                <i class="bi bi-info-circle"></i> Este usuario aún no ha contratado ningún servicio.
+                            <div class="text-center text-muted">
+                                <i class="bi bi-cart-plus" style="font-size: 2rem;"></i>
+                                <p class="mt-2">No hay servicios contratados</p>
                             </div>
                         @endif
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-credit-card"></i> Historial de Compras
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center text-muted">
+                            <i class="bi bi-receipt" style="font-size: 2rem;"></i>
+                            <p class="mt-2">No hay compras registradas</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</x-layout>
+</x-layout> 

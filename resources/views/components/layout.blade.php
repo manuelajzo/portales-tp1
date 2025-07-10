@@ -33,8 +33,46 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/') }}">
-                                <i class="bi bi-house-heart"></i> Home
+                            <span class="nav-link">
+                                <i class="bi bi-person-circle"></i> Hola, {{ auth()->user()->name }}
+                                <span class="badge {{ auth()->user()->isAdmin() ? 'bg-danger' : 'bg-primary' }} ms-1">
+                                    {{ auth()->user()->isAdmin() ? 'Admin' : 'Usuario' }}
+                                </span>
+                            </span>
+                        </li>
+                        @if((auth()->user()->role ?? '') === 'admin')
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear"></i> Administración
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="{{ url('admin/posts') }}">
+                                            <i class="bi bi-pencil-square"></i> Administrar Blog
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ url('admin/users') }}">
+                                            <i class="bi bi-people"></i> Administrar Usuarios
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+                        <li class="nav-item">
+                            <form method="POST" action="{{ url('logout') }}" id="logout-form" onsubmit="return confirm('¿Estás segura que deseas cerrar sesión?');">
+                                @csrf
+                                <button type="submit" class="btn btn-link nav-link">
+                                    <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+                                </button>
+                            </form>
+                        </li>
+                    @endauth
+
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('login') }}">
+                                <i class="bi bi-box-arrow-in-right"></i> Iniciar sesión
                             </a>
                         </li>
                         <li class="nav-item">

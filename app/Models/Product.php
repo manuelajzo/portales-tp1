@@ -92,5 +92,12 @@ class Product extends Model
                 ->withPivot('total_amount', 'status', 'order_date')
                 ->withTimestamps();
     }
-}
 
+    /**
+     * Get the user services for this product
+     */
+    public function userServices()
+    {
+        return $this->hasMany(UserService::class);
+    }
+}
