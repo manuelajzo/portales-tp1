@@ -7,8 +7,16 @@ use App\Models\BlogPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
+/**
+ * Controlador para administrar los posts del blog.
+ */
 class PostController extends Controller
 {
+    /**
+     * Reglas de validación para los posts.
+     *
+     * @var array<string, string>
+     */
     private $validationRules = [
         'title' => 'required|max:255',
         'content' => 'required',
@@ -18,7 +26,9 @@ class PostController extends Controller
     ];
 
     /**
-     * return a list of posts.
+     * Muestra una lista de posts.
+     *
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -27,7 +37,9 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for creating a new post.
+     * Muestra el formulario para crear un nuevo post.
+     *
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -35,7 +47,10 @@ class PostController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacena un nuevo post en la base de datos.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -50,7 +65,10 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Muestra un post específico.
+     *
+     * @param \App\Models\BlogPost $post
+     * @return \Illuminate\View\View
      */
     public function show(BlogPost $post)
     {
@@ -58,7 +76,10 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar un post.
+     *
+     * @param \App\Models\BlogPost $post
+     * @return \Illuminate\View\View
      */
     public function edit(BlogPost $post)
     {
@@ -66,7 +87,11 @@ class PostController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza un post específico en la base de datos.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\BlogPost $post
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, BlogPost $post)
     {
@@ -81,7 +106,10 @@ class PostController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina un post específico de la base de datos.
+     *
+     * @param \App\Models\BlogPost $post
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(BlogPost $post)
     {
@@ -92,6 +120,14 @@ class PostController extends Controller
             ->with('success', 'Post eliminado exitosamente.');
     }
 
+    /**
+     * Maneja la subida de imágenes para los posts.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param array $validated
+     * @param \App\Models\BlogPost|null $post
+     * @return array
+     */
     private function handleImageUpload(Request $request, array $validated, ?BlogPost $post = null): array
     {
         if ($request->hasFile('image')) {
@@ -108,14 +144,22 @@ class PostController extends Controller
         return $validated;
     }
 
+    /**
+     * Prepara los datos del post antes de guardar.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param array $validated
+     * @param \App\Models\BlogPost|null $post
+     * @return array
+     */
     private function preparePostData(Request $request, array $validated, ?BlogPost $post = null): array
     {
         if (!isset($validated['slug'])) {
             $validated['slug'] = Str::slug($validated['title']);
         }
-        
+
         $validated['is_published'] = $request->has('is_published');
-        
+
         if ($validated['is_published'] && (!$post || !$post->published_at)) {
             $validated['published_at'] = now();
         }
@@ -123,6 +167,12 @@ class PostController extends Controller
         return $validated;
     }
 
+    /**
+     * Elimina la imagen de un post del servidor.
+     *
+     * @param \App\Models\BlogPost|null $post
+     * @return void
+     */
     private function deleteImage(?BlogPost $post): void
     {
         if ($post && $post->image && file_exists(public_path($post->image))) {

@@ -6,13 +6,27 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
+/**
+ * Controlador para manejar la autenticación de usuarios.
+ */
 class AuthController extends Controller
 {
+    /**
+     * Muestra el formulario de login.
+     *
+     * @return \Illuminate\View\View
+     */
     public function login()
     {
         return view('auth.login');
     }
 
+    /**
+     * Procesa la autenticación del usuario.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
@@ -42,6 +56,12 @@ class AuthController extends Controller
     ])->withInput();
     }
 
+    /**
+     * Cierra la sesión del usuario.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function logout(Request $request)
     {
         Auth::logout();

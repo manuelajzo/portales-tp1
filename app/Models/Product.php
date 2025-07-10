@@ -5,10 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Modelo de Producto con servicios y productos disponibles.
+ */
 class Product extends Model
 {
     use HasFactory;
 
+    /**
+     * Los atributos que son asignables masivamente.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'name',
         'description',
@@ -23,7 +31,9 @@ class Product extends Model
     ];
 
     /**
-     * Get formatted price
+     * Devuelve el precio formateado con símbolo de moneda.
+     *
+     * @return string
      */
     public function getFormattedPriceAttribute()
     {
@@ -31,7 +41,9 @@ class Product extends Model
     }
 
     /**
-     * Get formatted duration
+     * Devuelve la duración formateada en horas y minutos.
+     *
+     * @return string
      */
     public function getFormattedDurationAttribute()
     {
@@ -50,18 +62,30 @@ class Product extends Model
     }
 
     /**
-     * Check if product is available
+     * Verifica si el producto está disponible.
+     *
+     * @return bool
      */
     public function isAvailable(): bool
     {
         return $this->is_available;
     }
 
+    /**
+     * Relación: Un producto tiene muchas órdenes.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function orders()
     {
         return $this->hasMany(Order::class);
     }
 
+    /**
+     * Relación: Un producto tiene muchos usuarios a través de órdenes.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function users()
     {
         return $this->belongsToMany(User::class, 'orders')

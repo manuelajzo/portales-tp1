@@ -5,10 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Modelo de Post del blog con contenido y metadatos.
+ */
 class BlogPost extends Model
 {
     use HasFactory;
 
+    /**
+     * Los atributos que son asignables masivamente.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'title',
         'slug',
@@ -20,20 +28,28 @@ class BlogPost extends Model
         'published_at'
     ];
 
+    /**
+     * Los atributos que deben ser convertidos a tipos nativos.
+     *
+     * @var array<string, string>
+     */
     protected $casts = [
         'is_published' => 'boolean',
         'published_at' => 'datetime'
     ];
 
     /**
-     * Get the post's image or return placeholder if not found
+     * Obtiene la imagen del post o devuelve una imagen por defecto si no existe.
+     *
+     * @param string $value
+     * @return string
      */
     public function getImageAttribute($value)
     {
         if ($value && file_exists(public_path($value))) {
             return $value;
         }
-        
+
         return 'img/placeholder.jpg';
     }
 }

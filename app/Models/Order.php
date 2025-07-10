@@ -5,10 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Modelo de Orden que conecta usuarios con productos.
+ */
 class Order extends Model
 {
     use HasFactory;
 
+    /**
+     * Los atributos que son asignables masivamente.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'user_id',
         'product_id',
@@ -18,13 +26,20 @@ class Order extends Model
         'notes',
     ];
 
+    /**
+     * Los atributos que deben ser convertidos a tipos nativos.
+     *
+     * @var array<string, string>
+     */
     protected $casts = [
         'order_date' => 'date',
         'total_amount' => 'decimal:2',
     ];
 
     /**
-     * Get the user that owns the order
+     * Relación: La orden pertenece a un usuario.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
     {
@@ -32,7 +47,9 @@ class Order extends Model
     }
 
     /**
-     * Get the product that was ordered
+     * Relación: La orden pertenece a un producto.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function product()
     {
@@ -40,7 +57,9 @@ class Order extends Model
     }
 
     /**
-     * Check if order is pending
+     * Verifica si la orden está pendiente.
+     *
+     * @return bool
      */
     public function isPending(): bool
     {
@@ -48,7 +67,9 @@ class Order extends Model
     }
 
     /**
-     * Check if order is completed
+     * Verifica si la orden está completada.
+     *
+     * @return bool
      */
     public function isCompleted(): bool
     {
@@ -56,7 +77,9 @@ class Order extends Model
     }
 
     /**
-     * Check if order is cancelled
+     * Verifica si la orden está cancelada.
+     *
+     * @return bool
      */
     public function isCancelled(): bool
     {
@@ -64,7 +87,9 @@ class Order extends Model
     }
 
     /**
-     * Get formatted total amount
+     * Devuelve el total formateado con símbolo de moneda.
+     *
+     * @return string
      */
     public function getFormattedTotalAttribute()
     {

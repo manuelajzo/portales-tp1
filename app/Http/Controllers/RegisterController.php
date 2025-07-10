@@ -7,10 +7,15 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
+/**
+ * Controlador para manejar el registro de usuarios.
+ */
 class RegisterController extends Controller
 {
     /**
-     * Show the registration form
+     * Muestra el formulario de registro.
+     *
+     * @return \Illuminate\View\View
      */
     public function showRegistrationForm()
     {
@@ -18,7 +23,10 @@ class RegisterController extends Controller
     }
 
     /**
-     * Handle user registration
+     * Procesa el registro de un nuevo usuario.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function register(Request $request)
     {

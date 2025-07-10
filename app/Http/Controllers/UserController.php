@@ -8,10 +8,15 @@ use App\Models\Product;
 use App\Models\Order;
 use App\Models\User;
 
+/**
+ * Controlador para manejar las acciones de usuarios autenticados.
+ */
 class UserController extends Controller
 {
     /**
-     * Show user dashboard
+     * Muestra el dashboard del usuario con sus órdenes recientes.
+     *
+     * @return \Illuminate\View\View
      */
     public function dashboard()
     {
@@ -22,7 +27,9 @@ class UserController extends Controller
     }
 
     /**
-     * Show all products available for purchase
+     * Muestra todos los productos disponibles para compra.
+     *
+     * @return \Illuminate\View\View
      */
     public function products()
     {
@@ -32,7 +39,10 @@ class UserController extends Controller
     }
 
     /**
-     * Show specific product detail
+     * Muestra el detalle de un producto específico.
+     *
+     * @param \App\Models\Product $product
+     * @return \Illuminate\View\View
      */
     public function showProduct(Product $product)
     {
@@ -40,7 +50,10 @@ class UserController extends Controller
     }
 
     /**
-     * Create a new order
+     * Crea una nueva orden para el usuario autenticado.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function createOrder(Request $request)
     {
@@ -79,7 +92,9 @@ class UserController extends Controller
     }
 
     /**
-     * Show user's order history
+     * Muestra el historial de órdenes del usuario.
+     *
+     * @return \Illuminate\View\View
      */
     public function orders()
     {
@@ -89,7 +104,10 @@ class UserController extends Controller
     }
 
     /**
-     * Cancel (delete) an order
+     * Cancela (elimina) una orden del usuario.
+     *
+     * @param \App\Models\Order $order
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function cancelOrder(Order $order)
     {

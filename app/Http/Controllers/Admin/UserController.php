@@ -6,10 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+/**
+ * Controlador para administrar usuarios desde el panel de administración.
+ */
 class UserController extends Controller
 {
     /**
-     * Display a listing of users
+     * Muestra una lista de usuarios con sus órdenes.
+     *
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -18,7 +23,10 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified user with their orders
+     * Muestra el detalle de un usuario específico con sus órdenes.
+     *
+     * @param \App\Models\User $user
+     * @return \Illuminate\View\View
      */
     public function show(User $user)
     {

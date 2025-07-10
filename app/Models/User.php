@@ -9,6 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Order;
 
+/**
+ * Modelo de Usuario con autenticación y roles.
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -17,7 +20,7 @@ class User extends Authenticatable
     const ROLE_ADMIN = 'admin';
 
     /**
-     * The attributes that are mass assignable.
+     * Los atributos que son asignables masivamente.
      *
      * @var array<int, string>
      */
@@ -29,7 +32,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * Los atributos que deben ocultarse para la serialización.
      *
      * @var array<int, string>
      */
@@ -39,7 +42,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
+     * Los atributos que deben ser convertidos a tipos nativos.
      *
      * @var array<string, string>
      */
@@ -49,24 +52,38 @@ class User extends Authenticatable
     ];
 
     /**
-     * Check if user is admin
+     * Verifica si el usuario es administrador.
+     *
+     * @return bool
      */
     public function isAdmin(): bool {
         return $this->role === self::ROLE_ADMIN;
     }
 
     /**
-     * Check if user is regular user
+     * Verifica si el usuario es usuario común.
+     *
+     * @return bool
      */
     public function isUser(): bool {
         return $this->role === self::ROLE_USER;
     }
 
+    /**
+     * Relación: Un usuario tiene muchas órdenes.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function orders()
     {
     return $this->hasMany(Order::class);
     }
 
+    /**
+     * Relación: Un usuario tiene muchos productos a través de órdenes.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function products()
     {
     return $this->belongsToMany(Product::class, 'orders')
