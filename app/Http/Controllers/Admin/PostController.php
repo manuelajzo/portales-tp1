@@ -18,7 +18,7 @@ class PostController extends Controller
     ];
 
     /**
-     * Display a listing of the resource.
+     * return a list of posts.
      */
     public function index()
     {
@@ -27,7 +27,7 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new post.
      */
     public function create()
     {

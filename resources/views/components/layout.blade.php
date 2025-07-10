@@ -53,13 +53,18 @@
                         <li class="nav-item">
                             <span class="nav-link">
                                 <i class="bi bi-person-circle"></i> Hola, {{ auth()->user()->name }}
+                                <span class="badge {{ auth()->user()->isAdmin() ? 'bg-danger' : 'bg-primary' }} ms-1">
+                                    {{ auth()->user()->isAdmin() ? 'Admin' : 'Usuario' }}
+                                </span>
                             </span>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('admin/posts') }}">
-                                <i class="bi bi-pencil-square"></i> Administrar Blog
-                            </a>
-                        </li>
+                        @if((auth()->user()->role ?? '') === 'admin')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('admin/posts') }}">
+                                    <i class="bi bi-pencil-square"></i> Administrar Blog
+                                </a>
+                            </li>
+                        @endif
                         <li class="nav-item">
                             <form method="POST" action="{{ url('logout') }}" id="logout-form" onsubmit="return confirm('¿Estás segura que deseas cerrar sesión?');">
                                 @csrf
@@ -84,6 +89,20 @@
 
     <!-- Contenido principal -->
     <main class="container py-4">
+        @if(session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="bi bi-exclamation-triangle"></i> {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        @endif
+        
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle"></i> {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        @endif
+        
         {{ $slot }}
     </main>
 
